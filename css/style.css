@@ -1,0 +1,14 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+div{
+    height: 20px;
+}
+
+.grid{
+    border: 1px solid #6e6e6e;
+    width: 20px;
+    display: inline-block;
+}
