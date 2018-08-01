@@ -1,17 +1,19 @@
 const container = document.querySelector('#container');
+var space = 512;
+var division = 16;
 
 function etch(){
-    for(let i=0; i<16; i++){
-        const line = document.createElement('div');
-        container.appendChild(line);
-        for(let j=0; j<16; j++){
-            const div = document.createElement('div');
-            div.classList.add('grid');
-            line.appendChild(div);
-            div.style.background = '#fff';
-        }
+    for(let j=0; j<division*division; j++){
+        const div = document.createElement('div');
+        div.classList.add('grid');
+        div.style.width = space/division + 'px';
+        div.style.height = space/division + 'px';
+        container.appendChild(div);
+        div.style.background = '#fff';
     }
 
+    const divs = document.querySelectorAll('.grid');
+    divs.forEach(div => div.addEventListener('mouseover', paint));
 }
 
 function clean(){
@@ -19,14 +21,25 @@ function clean(){
     divs.forEach(div => div.style.background = '#fff');
 }
 
+function resize(){
+    clean();
+    division = prompt('Squares per side');
+
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
+    etch();
+}
+
 etch();
 
 function paint(){
-    this.style.cssText = 'background: #000';
+    this.style.background = '#000';
 }
-
-const divs = document.querySelectorAll('.grid');
-divs.forEach(div => div.addEventListener('mouseover', paint));
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', clean);
+
+const size = document.querySelector('#size');
+size.addEventListener('click', resize);

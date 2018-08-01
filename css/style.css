@@ -12,12 +12,15 @@ html, body{
     margin: 10px;
 }
 
-div{
-    height: 20px;
+#container{
+    width: 512px;
+    height: 512px;
+    margin: 0 auto;
 }
 
 .grid{
-    border: 1px solid #6e6e6e;
-    width: 20px;
-    display: inline-block;
+    box-sizing: border-box;
+    outline: 1px solid #6e6e6e;
+    float: left;
 }
+
