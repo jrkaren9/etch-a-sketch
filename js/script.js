@@ -1,6 +1,10 @@
-const container = document.querySelector('#container');
-var space = 512;
+var space = 480;
 var division = 16;
+var paintColor = '#000';
+
+const container = document.querySelector('#container');
+container.style.width = space + 'px';
+container.style.height = space + 'px';
 
 function etch(){
     for(let j=0; j<division*division; j++){
@@ -32,14 +36,22 @@ function resize(){
     etch();
 }
 
-etch();
-
-function paint(){
-    this.style.background = '#000';
+function watchColorPicker(e) {
+    paintColor = e.target.value;
 }
+
+function paint(e){
+    e.target.style.background = paintColor;
+}
+
+etch();
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', clean);
 
 const size = document.querySelector('#size');
 size.addEventListener('click', resize);
+
+const color = document.querySelector('#color');
+color.addEventListener('input', watchColorPicker);
+

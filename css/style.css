@@ -1,20 +1,23 @@
-html, body{
+*, html, body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-#game, header{
-    text-align: center;
+header{
+    padding: 15px;
 }
 
-#clear{
-    margin: 10px;
+#game, header{
+    text-align: center;   
+}
+
+button, input{
+    margin: 0 5px 15px;
 }
 
 #container{
-    width: 512px;
-    height: 512px;
+    box-sizing: content-box;
     margin: 0 auto;
 }
 
@@ -23,4 +26,3 @@ html, body{
     outline: 1px solid #6e6e6e;
     float: left;
 }
-
