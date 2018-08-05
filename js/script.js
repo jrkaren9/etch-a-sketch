@@ -1,6 +1,8 @@
 var space = 480;
 var division = 16;
 var paintColor = '#000000';
+var percent = 25;
+var lightorshade = true;
 
 const container = document.querySelector('#container');
 container.style.width = space + 'px';
@@ -41,7 +43,12 @@ function clean(){
 
 function resize(){
     clean();
-    division = prompt('Squares per side');
+    temp = prompt('Squares per side');
+
+    if(temp > 0)
+        division = temp;
+    else
+        alert('Needs to be a number, bigger than 0');
 
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -56,21 +63,25 @@ function watchColorPicker(e) {
 
 function paint(e){
 
-    if(e.target.style.background =='rgb(255, 255, 255)')
-        e.target.style.background = paintColor;
+    if(e.target.style.background =='rgb(255, 255, 255)' && paintColor == '#000000')
+        e.target.style.background = shade('#ffffff', percent);
+    else if(e.target.style.background =='rgb(255, 255, 255)')
+        e.target.style.background = shade(paintColor, percent);
     else{
         let style = window.getComputedStyle(e.target);
         let color = style.getPropertyValue('background-color');
         color = rgb2hex(color);
-        e.target.style.background = shade(color);
-        console.log(rgb2hex(e.target.style.background));
+        e.target.style.background = shade(color, percent);
     }
         
 }
 
 // from css-tricks
-function shade(color, percent = -25) {
-  
+function shade(color, percent) {
+    
+    if(lightorshade)
+        percent = -percent;
+
     var usePound = false;
   
     if (color[0] == "#") {
@@ -95,6 +106,14 @@ function shade(color, percent = -25) {
     return (usePound?"#":"") + String("000000" + (g | (b << 8) | (r << 16)).toString(16)).slice(-6);
 }
 
+function changePercent(){
+    percent = this.value;
+}
+
+function changeShade(){
+    (lightorshade) ? lightorshade = false : lightorshade = true;
+}
+
 etch();
 
 const clear = document.querySelector('#clear');
@@ -105,4 +124,12 @@ size.addEventListener('click', resize);
 
 const color = document.querySelector('#color');
 color.addEventListener('input', watchColorPicker);
+
+const slider = document.querySelector('#myRange');
+slider.addEventListener('input', changePercent);
+
+const adjust = document.querySelector('#adjust');
+adjust.addEventListener('click', changeShade);
+
+
 
