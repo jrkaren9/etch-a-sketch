@@ -6,6 +6,7 @@
 
 header{
     padding: 15px;
+    color: #fff;
 }
 
 #game, header{
@@ -13,7 +14,16 @@ header{
 }
 
 button, input{
-    margin: 0 5px 15px;
+    margin: 25px 5px 0;
+}
+
+#table{
+    margin: 15px auto;  
+    box-sizing: content-box;
+    background: #8a0303;
+    width: 580px;
+    height: 640px;
+    border-radius: 5% 5% 8% 8%;
 }
 
 #container{
