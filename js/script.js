@@ -63,15 +63,15 @@ function watchColorPicker(e) {
 
 function paint(e){
 
-    if(e.target.style.background =='rgb(255, 255, 255)' && paintColor == '#000000')
-        e.target.style.background = shade('#ffffff', percent);
-    else if(e.target.style.background =='rgb(255, 255, 255)')
-        e.target.style.background = shade(paintColor, percent);
+    if(e.target.style.backgroundColor =='rgb(255, 255, 255)' && paintColor == '#000000')
+        e.target.style.backgroundColor = shade('#ffffff', percent);
+    else if(e.target.style.backgroundColor =='rgb(255, 255, 255)')
+        e.target.style.backgroundColor = paintColor;
     else{
         let style = window.getComputedStyle(e.target);
         let color = style.getPropertyValue('background-color');
         color = rgb2hex(color);
-        e.target.style.background = shade(color, percent);
+        e.target.style.backgroundColor = shade(color, percent);
     }
         
 }
